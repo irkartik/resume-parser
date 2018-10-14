@@ -1,0 +1,86 @@
+{% extends 'core/index.html' %}
+
+{% block content %}
+      
+<style type="text/css">
+	.mdl-cell{
+		padding: 2em;
+	}
+</style>
+
+<div class="mdl-grid demo-content">
+
+  <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col" style="justify-content: center;">
+  	<div>
+	<h2>Please Upload Resume File</h2>
+	<p>Note: Supported file formats: PDF, DOC, DOCX, PPT</p>
+	</div>
+	<form action="{% url 'parse' %}" method="post" enctype="multipart/form-data">
+	  <div class="mdl-textfield mdl-js-textfield">
+	    <input class="mdl-filefield__input" type="file" name="resume">
+	    <!-- <label class="mdl-textfield__label" for="sample1">Text...</label> -->
+	  </div>
+	  <input class="mdl-button mdl-js-button mdl-button--raised" type="submit" name="submit">
+	</form>
+ 
+  </div>
+
+</div>
+
+{% if data %}
+<div class="mdl-grid demo-content">
+	<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+	<h2>Parsed Data</h2>
+	
+	<!-- Simple list -->
+	<!-- <style>
+	.demo-list-item {
+	  width: 300px;
+	}
+	</style>
+ -->
+	<ul class="demo-list-item mdl-list">
+	  <li class="mdl-list__item">
+	    <span class="mdl-list__item-primary-content">
+	     	<strong>Name</strong>:
+	     	{{data.name}}
+	    </span>
+	  </li>
+	  <li class="mdl-list__item">
+	    <span class="mdl-list__item-primary-content">
+	      <strong>Email</strong>:
+	      {{data.email}}
+	    </span>
+	  </li>
+	  <li class="mdl-list__item">
+	    <span class="mdl-list__item-primary-content">
+	      <strong>Phone Number</strong>: 
+	      {{data.phone}}
+	    </span>
+	  </li>
+	  <!-- <li class="mdl-list__item">
+	    <span class="mdl-list__item-primary-content">
+	      <strong>Current Education</strong>: 
+	      Maharaja Surajmal Institute of Technology
+	    </span>
+	  </li>
+	  <li class="mdl-list__item">
+	    <span class="mdl-list__item-primary-content">
+	      <strong>Technical Skills</strong>: 
+	      C++, Java, Python
+	    </span>
+	  </li>
+	  <li class="mdl-list__item">
+	    <span class="mdl-list__item-primary-content">
+	      <strong>Country</strong>: 
+	      India
+	    </span>
+	  </li> -->
+	</ul>
+
+
+	</div>
+</div>
+{% endif %}
+
+{% endblock %}

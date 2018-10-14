@@ -1,0 +1,73 @@
+{% extends 'core/index.html' %}
+
+{% block content %}
+
+<!-- Three Line List with secondary info and action -->
+<style>
+.mdl-data-table {
+  width: 100%;
+}
+.parsed_link{
+	text-decoration: none;
+}
+a:hover{
+	text-decoration: none;
+}
+</style>
+
+<div class="mdl-grid">
+
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+  <thead>
+    <tr>
+      <th class="mdl-data-table__cell--non-numeric">Name</th>
+      <th>Email</th>
+      <th>Phone Number</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for resume in parsed %}
+    <tr>
+      <td class="mdl-data-table__cell--non-numeric">{{ resume.name }}</td>
+      <td>{{ resume.email }}</td>
+      <td>{{ resume.phone }}</td>
+      <td><a href="#">Remove</a> | <a href="{{resume.file.url}}">Download File</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" >
+  Download CSV
+</button>
+
+</div>
+
+
+{% endblock %}
+
+
+{% block modals %}
+	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLongTitle">Bryan Crynston</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        Name : Bryan Crynston <br>
+	        Email : bryan@bryan.com <br>
+	        Phone Number : +91 9842630277 <br>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary">Download Resume</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+{% endblock %}
